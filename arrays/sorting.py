@@ -46,11 +46,32 @@ def insertion_sort_2(arr):
     return arr
 
 
+def partition(arr, low, high):
+    pivot = arr[high]
+    i = low - 1
+
+    for j in range(low, high):
+        if arr[j] <= pivot:
+            i += 1
+            arr[i], arr[j] = arr[j], arr[i]
+    arr[i+1], arr[high] = arr[high], arr[i+1]
+    return i+1
+
+def quick_sort(arr, low=0, high=None):
+    if high is None:
+        high = len(arr) - 1
+    if low < high:
+        pivot_idx = partition(arr, low, high)
+        quick_sort(arr, low, pivot_idx-1)
+        quick_sort(arr, pivot_idx+1, high)
+
 
 if __name__ == "__main__":
+    arr = [6,2,31,1,0]
     # new = bubble_sort([6,2,31,1,0])
     # new = selection_sort([6,2,31,1,0])
     # new = selection_sort_2([6,2,31,1,0])
     # new = insertion_sort([6,2,31,1,0])
-    new = insertion_sort_2([6,2,31,1,0])
-    print(new)
+    # new = insertion_sort_2([6,2,31,1,0])
+    quick_sort(arr)
+    print(arr)
