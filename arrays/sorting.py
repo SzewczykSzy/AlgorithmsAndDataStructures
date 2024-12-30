@@ -66,6 +66,17 @@ def quick_sort(arr, low=0, high=None):
         quick_sort(arr, pivot_idx+1, high)
 
 
+def counting_sort(arr):
+    counter = [0 for i in range(max(arr)+1)]
+    for el in arr:
+        counter[el] += 1
+    result = []
+    for idx, el in enumerate(counter[:]):
+        if el > 0:
+            result.extend([idx]*el)
+    return result
+
+
 if __name__ == "__main__":
     arr = [6,2,31,1,0]
     # new = bubble_sort([6,2,31,1,0])
@@ -73,5 +84,6 @@ if __name__ == "__main__":
     # new = selection_sort_2([6,2,31,1,0])
     # new = insertion_sort([6,2,31,1,0])
     # new = insertion_sort_2([6,2,31,1,0])
-    quick_sort(arr)
-    print(arr)
+    # quick_sort(arr)
+    new = counting_sort(arr)
+    print(new)
