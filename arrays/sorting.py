@@ -77,13 +77,29 @@ def counting_sort(arr):
     return result
 
 
+def radix_sort(arr):
+    radix_arr = [[], [], [], [], [], [], [], [], [], []]
+    for i in range(len(str(arr[0]))):
+        for j in range(len(arr)):
+            idx = int(str(arr[j])[-i-1])
+            radix_arr[idx].append(arr[j])
+        arr = []
+        for el in radix_arr:
+            for val in el:
+                arr.append(val)
+        radix_arr = [[], [], [], [], [], [], [], [], [], []]
+    return arr
+
+
 if __name__ == "__main__":
-    arr = [6,2,31,1,0]
+    # arr = [6,2,31,1,0]
+    arr = [33, 45, 40, 25, 17, 24]
     # new = bubble_sort([6,2,31,1,0])
     # new = selection_sort([6,2,31,1,0])
     # new = selection_sort_2([6,2,31,1,0])
     # new = insertion_sort([6,2,31,1,0])
     # new = insertion_sort_2([6,2,31,1,0])
     # quick_sort(arr)
-    new = counting_sort(arr)
+    # new = counting_sort(arr)
+    new = radix_sort(arr)
     print(new)
