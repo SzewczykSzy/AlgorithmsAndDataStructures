@@ -91,6 +91,35 @@ def radix_sort(arr):
     return arr
 
 
+def merge_sort(arr):
+    if len(arr) <= 1:
+        return arr
+    
+    div_idx = len(arr)//2
+    left_arr = arr[:div_idx]
+    right_arr = arr[div_idx:]
+
+    left_sorted = merge_sort(left_arr)
+    right_sorted = merge_sort(right_arr)
+
+    return merge(left_sorted, right_sorted)
+
+def merge(left, right):
+    result = []
+    i = 0
+    j = 0
+    while i < len(left) and j < len(right):
+        if left[i] < right[j]:
+            result.append(left[i])
+            i += 1
+        else:
+            result.append(right[j])
+            j += 1
+    result.extend(left[i:])
+    result.extend(right[j:])
+    return result
+
+
 if __name__ == "__main__":
     # arr = [6,2,31,1,0]
     arr = [33, 45, 40, 25, 17, 24]
@@ -101,5 +130,6 @@ if __name__ == "__main__":
     # new = insertion_sort_2([6,2,31,1,0])
     # quick_sort(arr)
     # new = counting_sort(arr)
-    new = radix_sort(arr)
+    # new = radix_sort(arr)
+    new = merge_sort(arr)
     print(new)
